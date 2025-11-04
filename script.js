@@ -1,0 +1,23 @@
+const { DiscordSDK } = window;
+const discordSdk = new DiscordSDK();
+
+async function init() {
+  try {
+    await discordSdk.ready();
+    const { user } = await discordSdk.commands.authenticate();
+
+    document.getElementById("welcome").textContent = `Hello, ${user.username}!`;
+  } catch (e) {
+    document.getElementById("welcome").textContent = "Failed to connect 😔";
+    console.error(e);
+  }
+}
+
+document.getElementById("helloBtn").addEventListener("click", () => {
+  discordSdk.commands.sendActivityAction({
+    type: "EMOJI",
+    emoji_id: "👋",
+  });
+});
+
+init();
