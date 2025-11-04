@@ -4,9 +4,7 @@ const discordSdk = new DiscordSDK();
 async function init() {
   try {
     await discordSdk.ready();
-    const { user } = await discordSdk.commands.authenticate();
-
-    document.getElementById("welcome").textContent = `Hello, ${user.username}!`;
+    document.getElementById("welcome").textContent = "Connected to Discord ✅";
   } catch (e) {
     document.getElementById("welcome").textContent = "Failed to connect 😔";
     console.error(e);
